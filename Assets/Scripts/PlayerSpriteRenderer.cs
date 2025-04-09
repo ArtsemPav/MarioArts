@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSpriteRenderer : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer { get; private set; }
     private PlayerMovement movement;
 
     public Sprite idle;
@@ -24,6 +24,7 @@ public class PlayerSpriteRenderer : MonoBehaviour
     private void OnDisable()
     {
         spriteRenderer.enabled = false;
+        run.enabled = false;
     }
 
     private void LateUpdate()

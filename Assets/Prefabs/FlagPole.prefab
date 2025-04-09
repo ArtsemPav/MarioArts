@@ -84,6 +84,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4374759717947549118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7033683744163355512}
+  m_Layer: 0
+  m_Name: Bottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7033683744163355512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4374759717947549118}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 141125933191707996}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7025931139738832082
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +125,8 @@ GameObject:
   m_Component:
   - component: {fileID: 141125933191707996}
   - component: {fileID: 3849990275184621602}
-  m_Layer: 0
+  - component: {fileID: 7575500659663433852}
+  m_Layer: 2
   m_Name: FlagPole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,6 +149,7 @@ Transform:
   - {fileID: 2059757963775837740}
   - {fileID: 6355278210024384901}
   - {fileID: 1847677091048237030}
+  - {fileID: 7033683744163355512}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3849990275184621602
@@ -164,6 +197,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.25, y: 10}
   m_EdgeRadius: 0
+--- !u!114 &7575500659663433852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025931139738832082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9cc1efbcc3717947a1a52f56ed4930f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: {fileID: 6355278210024384901}
+  poleBottom: {fileID: 7033683744163355512}
+  castle: {fileID: 0}
+  speed: 6
+  nextWorld: 1
+  nextStage: 1
 --- !u!1 &9206400940770091033
 GameObject:
   m_ObjectHideFlags: 0

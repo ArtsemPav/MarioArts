@@ -4,6 +4,8 @@ public class PlayerMovement : MonoBehaviour
 {
     private Camera mainCamera;
     private Rigidbody2D rigidbodyMario;
+    private Collider2D colliderMario;
+
     private Vector2 velocity;
     private float inputAxis;
 
@@ -21,7 +23,24 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rigidbodyMario = GetComponent<Rigidbody2D>();
+        colliderMario = GetComponent<Collider2D>();
         mainCamera = Camera.main;
+    }
+
+    private void OnEnable()
+    {
+        rigidbodyMario.isKinematic = false;
+        colliderMario.enabled = true;
+        velocity = Vector2.zero;
+        Jumping = false;
+    }
+
+    private void OnDisable()
+    {
+        rigidbodyMario.isKinematic = true;
+        colliderMario.enabled = false;
+        velocity = Vector2.zero;
+        Jumping = false;
     }
 
     private void Update()
@@ -90,7 +109,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer != LayerMask.NameToLayer("PowerUp"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            if (transform.DotTest(collision.transform, Vector2.down))
+            {
+                velocity.y = JumpForce / 2f;
+                Jumping = true;
+            }
+        }
+        else if (collision.gameObject.layer != LayerMask.NameToLayer("PowerUp"))
         {
            if (transform.DotTest(collision.transform,Vector2.up))
             {
