@@ -19,13 +19,19 @@ public class Koopa : MonoBehaviour
             if (player.starpower)
             {
                 Hit();
+                GameManager.Instance.AddCoin();
             }
             else if (collision.transform.DotTest(transform, Vector2.down))
             {
                 EnterShell();
+                GameManager.Instance.AddCoin();
             }
             else
             {
+                if ((GameManager.Instance.lives > 1) || (player.bigRenderer.enabled == true))
+                {
+                    Hit();
+                }
                 player.Hit();
             }
         }
@@ -50,12 +56,17 @@ public class Koopa : MonoBehaviour
                 }
                 else
                 {
+                    if ((GameManager.Instance.lives > 1) || (player.bigRenderer.enabled == true))
+                    {
+                        Hit();
+                    }
                     player.Hit();
                 }
             }
         } else if (!shelled && other.gameObject.layer == LayerMask.NameToLayer("Shell"))
         {
             Hit();
+            GameManager.Instance.AddCoin();
         }
     }
     private void EnterShell()

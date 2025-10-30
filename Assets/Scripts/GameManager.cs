@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,12 +8,11 @@ public class GameManager : MonoBehaviour
     public int stage { get; private set; }
     public int lives { get; private set; }
     public int coins { get; private set; }
-//    public UIManager uimanager;
 
     private void Awake()
     {
         Debug.Log("Awake " + name);
-        if (Instance != null)
+        if ((Instance != null) && (Instance != this))
         {
             DestroyImmediate(gameObject);
         } else
@@ -34,20 +32,16 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 60;
-//        uimanager = GetComponent<UIManager>();
         NewGame();
     }
 
-    private void NewGame()
+    public void NewGame()
     {
         lives = 3;
         coins = 0;
         world = 1;
         stage = 1;
         LoadLevel(world, stage);
- //       uimanager.ScoreUpdate(coins);
- //       uimanager.LivesUpdate(lives);
- //       uimanager.LevelUpdate(world, stage);
         
     }
 
@@ -69,13 +63,13 @@ public class GameManager : MonoBehaviour
     }
     public void ResetLevel()
     {
-        lives--;
+        MissLife();
         if (lives > 0)
         {
             LoadLevel(world, stage);
         } else
         {
-            GameOver();
+          //  GameOver();
         }
     }
 
@@ -87,8 +81,7 @@ public class GameManager : MonoBehaviour
     public void AddCoin()
     {
         coins++;
-//       uimanager.ScoreUpdate(coins);
-        if (coins == 100)
+        if (coins == 10)
         {
             coins = 0;
             AddLife();
@@ -98,5 +91,10 @@ public class GameManager : MonoBehaviour
     public void AddLife()
     {
         lives++;
+    }
+
+    public void MissLife()
+    {
+        lives--;
     }
 }

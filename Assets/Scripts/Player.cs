@@ -32,7 +32,15 @@ public class Player : MonoBehaviour
             }
             else
             {
-                Death();
+                if (GameManager.Instance.lives > 1)
+                {
+                    GameManager.Instance.MissLife();
+                    StarPower(2f);
+                }
+                else
+                {
+                    Death();
+                }
             }
         }
     }
@@ -66,7 +74,6 @@ public class Player : MonoBehaviour
         smallRenderer.enabled = false;
         bigRenderer.enabled = false;
         deathAnimation.enabled = true;
-
         GameManager.Instance.ResetLevel(3f);
     }
 

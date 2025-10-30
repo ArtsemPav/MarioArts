@@ -14,12 +14,18 @@ public class Goomba : MonoBehaviour
             if (player.starpower)
             {
                 Hit();
+                GameManager.Instance.AddCoin();
             }
             else if (collision.transform.DotTest(transform, Vector2.down))
             {
                 Flatten();
+                GameManager.Instance.AddCoin();
             } else
             {
+                if ((GameManager.Instance.lives>1) || (player.bigRenderer.enabled == true))
+                {
+                    Hit();
+                }
                 player.Hit();
             }
         }
@@ -30,6 +36,7 @@ public class Goomba : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Shell"))
         {
             Hit();
+            GameManager.Instance.AddCoin();
         }
     }
     private void Flatten()
